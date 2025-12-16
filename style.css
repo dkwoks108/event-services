@@ -1274,27 +1274,32 @@ font-size: 28px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-* {
+*,
+*::before,
+*::after {
+animation-duration: 0.01ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: 0.01ms !important;
 scroll-behavior: auto !important;
-animation: none !important;
+}
 }
 
-.main_button,
-.secondary_button,
-.cta_button,
-.ghost_button,
+.hero_badge,
+.web_content h1,
+.web_content h3,
+.hero_cta_group,
 .card,
+.about_content,
+.about_image,
 .benefit_card,
+.stat_card,
 .testimonial_card,
-.value_points li,
-.hamburger span,
-.footer_social a,
-.anchor_tags a::after {
-transition: none;
-}
-
-.hero_highlight {
-animation: none;
-background-position: 0% 50%;
-}
+.contact_info,
+.contact_form_wrapper,
+.footer_cta_block,
+.footer_brand,
+.footer_links,
+.footer_contact,
+.post_contact_inner > * {
+opacity: 1;
 }

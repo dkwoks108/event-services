@@ -34,15 +34,21 @@
 
   const animateGroup = (targets, trigger) => {
     if (!targets || !targets.length) return;
-    gsap.from(targets, {
-      ...baseConfig,
-      stagger: targets.length > 1 ? 0.08 : 0,
-      scrollTrigger: {
-        trigger: trigger || targets[0],
-        start: 'top 80%',
-        once: true
+    gsap.fromTo(targets, 
+      { opacity: 0, y: 28 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+        stagger: targets.length > 1 ? 0.08 : 0,
+        scrollTrigger: {
+          trigger: trigger || targets[0],
+          start: 'top 85%',
+          once: true
+        }
       }
-    });
+    );
   };
 
   const animateCounter = (el) => {
@@ -71,8 +77,15 @@
     });
   }
 
-  gsap.from('.hero_badge', { opacity: 0, y: -20, duration: 0.5, ease: 'power2.out', delay: 0.2 });
-  animateGroup(document.querySelectorAll('.web_content h1, .web_content h3, .hero_cta_group'), document.querySelector('.Bg_img'));
+  gsap.fromTo('.hero_badge', 
+    { opacity: 0, y: -20 },
+    { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: 0.2 }
+  );
+  
+  gsap.fromTo('.web_content h1, .web_content h3, .hero_cta_group',
+    { opacity: 0, y: 28 },
+    { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', stagger: 0.1, delay: 0.3 }
+  );
 
   gsap.utils.toArray('.all_services').forEach(section => {
     animateGroup(section.querySelectorAll('.card'), section);
@@ -86,4 +99,6 @@
   animateGroup(document.querySelectorAll('.contact_info, .contact_form_wrapper'), document.querySelector('.contact_section'));
   animateGroup(document.querySelectorAll('.footer_cta_block, .footer_brand, .footer_links, .footer_contact'), document.querySelector('.footer'));
   animateGroup(document.querySelectorAll('.post_contact_inner > *'), document.querySelector('.post_contact'));
+
+  ScrollTrigger.refresh();
 })();
