@@ -28,5 +28,7 @@
 
   animateGroup(document.querySelectorAll('.About .about_content, .About .about_image'), document.querySelector('.About'));
   animateGroup(document.querySelectorAll('.others .about_content, .others .about_image'), document.querySelector('.others'));
-  animateGroup(document.querySelectorAll('.footer > div'), document.querySelector('.footer'));
+  animateGroup(document.querySelectorAll('.trust_grid .benefit_card'), document.querySelector('.trust_section'));
+  animateGroup(document.querySelectorAll('.footer_cta_block, .footer > div'), document.querySelector('.footer'));
+  animateGroup(document.querySelectorAll('.post_contact_inner > *'), document.querySelector('.post_contact'));
 })();
