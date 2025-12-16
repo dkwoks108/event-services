@@ -1,0 +1,32 @@
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduceMotion.matches) return;
+  if (typeof gsap === 'undefined') return;
+  if (typeof ScrollTrigger === 'undefined') return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  const baseConfig = { opacity: 0, y: 28, duration: 0.6, ease: 'power2.out' };
+
+  const animateGroup = (targets, trigger) => {
+    if (!targets || !targets.length) return;
+    gsap.from(targets, {
+      ...baseConfig,
+      stagger: targets.length > 1 ? 0.08 : 0,
+      scrollTrigger: {
+        trigger: trigger || targets[0],
+        start: 'top 80%',
+        once: true
+      }
+    });
+  };
+
+  animateGroup(document.querySelectorAll('.web_content h1, .web_content h3, .web_content .main_button'), document.querySelector('.Bg_img'));
+
+  gsap.utils.toArray('.all_services').forEach(section => {
+    animateGroup(section.querySelectorAll('.card'), section);
+  });
+
+  animateGroup(document.querySelectorAll('.About .about_content, .About .about_image'), document.querySelector('.About'));
+  animateGroup(document.querySelectorAll('.others .about_content, .others .about_image'), document.querySelector('.others'));
+  animateGroup(document.querySelectorAll('.footer > div'), document.querySelector('.footer'));
+})();
