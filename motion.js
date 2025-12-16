@@ -1,4 +1,29 @@
 (() => {
+  const hamburger = document.querySelector('.hamburger');
+  const navMenu = document.querySelector('.all_anchor_tags');
+  const navLinks = document.querySelectorAll('.anchor_tags a');
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      }
+    });
+  }
+
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   if (reduceMotion.matches) return;
   if (typeof gsap === 'undefined') return;
@@ -20,7 +45,8 @@
     });
   };
 
-  animateGroup(document.querySelectorAll('.web_content h1, .web_content h3, .web_content .main_button'), document.querySelector('.Bg_img'));
+  gsap.from('.hero_badge', { opacity: 0, y: -20, duration: 0.5, ease: 'power2.out', delay: 0.2 });
+  animateGroup(document.querySelectorAll('.web_content h1, .web_content h3, .hero_cta_group'), document.querySelector('.Bg_img'));
 
   gsap.utils.toArray('.all_services').forEach(section => {
     animateGroup(section.querySelectorAll('.card'), section);
