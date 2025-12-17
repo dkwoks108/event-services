@@ -229,7 +229,7 @@
         </div>
     </div>
 
-    <div class="trust_section " id="trust_section">
+    <div class="trust_section" id="trust_section">
         <div class="trust_heading">
             <span class="section_badge">Why Choose Us</span>
             <h2>Why Clients Choose Us</h2>
@@ -379,7 +379,7 @@
                 </div>
             </div>
             <div class="contact_form_wrapper">
-                <form class="contact_form" action="#" method="POST">
+                <form class="contact_form" id="contactForm" action="contact.php" method="POST">
                     <div class="form_row">
                         <div class="form_group">
                             <label for="contact_name">Your Name</label>
@@ -494,34 +494,44 @@
     <script src="motion.js" defer></script>
 
     <script>
-document.getElementById("contactForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+(function() {
+    const form = document.getElementById("contactForm");
+    if (!form) return;
+    
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
 
-    const btn = this.querySelector(".form_submit_btn");
-    btn.disabled = true;
+        const btn = this.querySelector(".form_submit_btn");
+        const btnText = btn.querySelector("span");
+        const originalText = btnText.textContent;
+        
+        btn.disabled = true;
+        btnText.textContent = "Sending...";
 
-    const formData = new FormData(this);
+        const formData = new FormData(this);
 
-    try {
-        const res = await fetch("contact.php", {
-            method: "POST",
-            body: formData
-        });
+        try {
+            const res = await fetch("contact.php", {
+                method: "POST",
+                body: formData
+            });
 
-        const text = await res.text();
+            const text = await res.text();
 
-        if (text.trim() === "success") {
-            alert("Thank you! We will contact you within 2 hours.");
-            this.reset();
-        } else {
-            alert("Something went wrong. Please try again.");
+            if (text.trim() === "success") {
+                alert("Thank you! We will contact you within 2 hours.");
+                this.reset();
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
+        } catch (err) {
+            alert("Server error. Please try later.");
         }
-    } catch (err) {
-        alert("Server error. Please try later.");
-    }
 
-    btn.disabled = false;
-});
+        btn.disabled = false;
+        btnText.textContent = originalText;
+    });
+})();
 </script>
 
 </body>
