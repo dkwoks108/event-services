@@ -24,7 +24,7 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 // EMAIL SETTINGS
-$to = "dkworks108@gmail.com"; // Replace with your email address
+$to = "contact@sorienterracines.com"; // Replace with your email address
 $subject = "New Event Inquiry - $event_type";
 
 $headers  = "From: Website Enquiry <no-reply@yourdomain.com>\r\n";
