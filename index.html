@@ -29,7 +29,8 @@
                 <div class="anchor_tags"><a class="Home" href="#About">About</a></div>
                 <div class="anchor_tags"><a class="Home" href="#Events">Events</a></div>
                 <div class="anchor_tags"><a class="Home" href="#Services">Services</a></div>
-                <div class="anchor_tags"><a class="Home" href="#Contact">Contact</a></div>
+                <div class="anchor_tags"><a class="Home" href="#trust_section">Why Choose Us</a></div>
+                <div class="anchor_tags"><a class="Home" href="#ContactForm">Contact</a></div>
             </div>
             <div class="header_cta">
                 <a href="https://wa.me/917737873223" class="cta_button"><i class="fa-brands fa-whatsapp"></i> Book Now</a>
@@ -491,6 +492,38 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     <script src="motion.js" defer></script>
+
+    <script>
+document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const btn = this.querySelector(".form_submit_btn");
+    btn.disabled = true;
+
+    const formData = new FormData(this);
+
+    try {
+        const res = await fetch("contact.php", {
+            method: "POST",
+            body: formData
+        });
+
+        const text = await res.text();
+
+        if (text.trim() === "success") {
+            alert("Thank you! We will contact you within 2 hours.");
+            this.reset();
+        } else {
+            alert("Something went wrong. Please try again.");
+        }
+    } catch (err) {
+        alert("Server error. Please try later.");
+    }
+
+    btn.disabled = false;
+});
+</script>
+
 </body>
 
 </html>
