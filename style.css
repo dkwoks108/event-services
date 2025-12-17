@@ -445,8 +445,8 @@ margin-top: 28px;
 background: #fff;
 padding: 0;
 border-radius: 24px;
-max-width: 340px;
-flex: 1 1 300px;
+max-width: 400px;
+flex: 1 1 360px;
 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 border: 1px solid rgba(0,0,0,0.05);
 box-shadow: 0 15px 50px rgba(0,0,0,0.06);
@@ -479,7 +479,7 @@ transform: scale(1.1);
 }
 
 .card_content {
-padding: 24px;
+padding: 28px;
 text-align: left;
 flex: 1;
 display: flex;
@@ -487,15 +487,15 @@ flex-direction: column;
 }
 
 .card_content h4 {
-margin-bottom: 12px;
-font-size: 20px;
+margin-bottom: 14px;
+font-size: 22px;
 font-weight: 700;
 color: #111;
 }
 
 .card_content p {
-font-size: 15px;
-line-height: 1.7;
+font-size: 16px;
+line-height: 1.75;
 color: #555;
 }
 
@@ -1156,6 +1156,27 @@ text-align: left;
 padding: 70px 5%;
 }
 
+.card {
+max-width: 100%;
+flex: 1 1 100%;
+}
+
+.card_content {
+padding: 24px;
+}
+
+.card_content h4 {
+font-size: 20px;
+}
+
+.card_content p {
+font-size: 15px;
+}
+
+.line {
+gap: 24px;
+}
+
 .form_row {
 grid-template-columns: 1fr;
 }
@@ -1252,6 +1273,19 @@ font-size: 12px;
 
 .trust_grid {
 grid-template-columns: 1fr;
+}
+
+.card_content {
+padding: 20px;
+}
+
+.card_content h4 {
+font-size: 18px;
+}
+
+.card_content p {
+font-size: 14px;
+line-height: 1.7;
 }
 
 .benefit_card,
